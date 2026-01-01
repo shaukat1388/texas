@@ -15,6 +15,9 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
+    # 🔴 REQUIRED when using environment-based OIDC
+    environment: YOUR_ENV_NAME
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -46,4 +49,3 @@ jobs:
       - name: Terraform Apply
         working-directory: batman-user
         run: terraform apply -auto-approve
-        #
