@@ -7,6 +7,7 @@ on:
       - "batman-user/**"
   workflow_dispatch:
 
+# REQUIRED for OIDC
 permissions:
   id-token: write
   contents: read
@@ -19,6 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Azure Login using branch-based OIDC
       - name: Azure Login (OIDC)
         uses: azure/login@v2
         with:
