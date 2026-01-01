@@ -7,7 +7,6 @@ on:
       - "batman-user/**"
   workflow_dispatch:
 
-# Top-level permissions required for OIDC
 permissions:
   id-token: write
   contents: read
@@ -20,13 +19,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Azure Login using branch-based OIDC
       - name: Azure Login (OIDC)
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
